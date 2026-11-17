@@ -274,13 +274,12 @@
       try {
         const token = makeToken();
 
-        const { data, error } = await santaPantsDB.rpc(
-          'create_wish_list',
-          {
-            p_owner_name: name,
-            p_owner_token: token
-          }
-        );
+        if (error) {
+  console.error('Santa Pants creation error:', error);
+  throw error;
+}
+
+console.log('Wish list created:', data);
 
         if (error) throw error;
 
@@ -297,8 +296,15 @@
         showOwner(slug, token, name);
         showMessage('Your Christmas wish list has been created! 🎁');
 
-      } catch (error) {
-        showMessage('Could not create your list: ' + error.message, true);
+} catch (error) {
+  showMessage(
+    'Creation error: ' +
+    (error.message || 'Unknown error') +
+    ' | Code: ' + (error.code || 'none') +
+    ' | Details: ' + (error.details || 'none'),
+    true
+  );
+}
       } finally {
         $('createButton').disabled = false;
       }
