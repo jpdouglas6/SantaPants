@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santa Pants 🎅 Christmas Wish Lists</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      background: #fff8ed;
+      color: #294b38;
+    }
+
+    header {
+      background: #c92f45;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: #176b49;
+      color: white;
+      text-align: center;
+      padding: 65px 20px;
+      border-radius: 0 0 40px 40px;
+    }
+
+    .hero .emoji { font-size: 65px; }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 70px);
+      margin: 12px 0;
+      color: #ffe17b;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 15px auto 25px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #ffcf55;
+      color: #56351f;
+      padding: 15px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    main {
+      max-width: 750px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .feature {
+      background: white;
+      padding: 24px 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px #0000000b;
+    }
+
+    .feature span { font-size: 35px; }
+
+    .feature h3 { color: #c92f45; }
+
+    .search {
+      background: #ffe9e2;
+      padding: 25px;
+      border-radius: 22px;
+      margin-top: 35px;
+    }
+
+    input {
+      width: 100%;
+      max-width: 350px;
+      padding: 14px;
+      border: 2px solid #ead6c9;
+      border-radius: 12px;
+      font-size: 16px;
+      margin: 12px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🎄 THE MOST WONDERFUL WISH LIST WEBSITE 🎄</header>
+
+  <section class="hero">
+    <div class="emoji">🎅🎁</div>
+    <h1>Santa Pants!</h1>
+    <p>
+      Dear Santa... I've been very good this year!
+      Create your Christmas wish list, share it
+      with everyone and make some Christmas magic.
+    </p>
+    <button class="button" onclick="alert('Your wish list creator is coming soon! 🎁')">
+      🎁 Create my wish list
+    </button>
+  </section>
+
+  <main>
+    <h2>Christmas wishes made easy! ✨</h2>
+    <p>No more guessing what everyone wants.
+       Let's make Christmas shopping magical!</p>
+
+    <div class="features">
+      <div class="feature">
+        <span>📝</span>
+        <h3>Make a list</h3>
+        <p>Add all your Christmas wishes in one place.</p>
+      </div>
+      <div class="feature">
+        <span>🔗</span>
+        <h3>Share the love</h3>
+        <p>Send your wish list to friends and family.</p>
+      </div>
+      <div class="feature">
+        <span>🤫</span>
+        <h3>Keep it secret</h3>
+        <p>Reserve gifts without spoiling the surprise.</p>
+      </div>
+    </div>
+
+    <div class="search">
+      <h2>Looking for someone's list? 🔍</h2>
+      <p>Once lists are live, you can find them here.</p>
+      <input type="text" placeholder="Enter a wish list link or name">
+      <br>
+      <button class="button" onclick="alert('Wish list search is coming soon! 🎄')">
+        Find a wish list
+      </button>
+    </div>
+  </main>
+
+  <footer>
+    Made with ❤️ and a little Christmas magic 🎄<br>
+    © 2026 Santa Pants
+  </footer>
+
+</body>
+</html>
