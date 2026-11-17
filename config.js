@@ -1,6 +1,3 @@
-
-// 🎅 Santa Pants - Supabase connection
-
 const SUPABASE_URL = "https://hgkyrgtbdaiboglqgzvq.supabase.co/rest/v1/";
 
 const SUPABASE_ANON_KEY = "sb_publishable_29tNqpeaDgFhfiy-sHJhUw_1_M6rWxs";
