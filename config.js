@@ -1,9 +1,9 @@
 
 // 🎅 Santa Pants - Supabase connection
 
-const SUPABASE_URL = "PASTE_YOUR_PROJECT_URL_HERE";
+const SUPABASE_URL = "https://hgkyrgtbdaiboglqgzvq.supabase.co/rest/v1/";
 
-const SUPABASE_ANON_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+const SUPABASE_ANON_KEY = "sb_publishable_29tNqpeaDgFhfiy-sHJhUw_1_M6rWxs";
 
 // Connect to Supabase
 const santaPantsDB = window.supabase.createClient(
