@@ -373,73 +373,81 @@ console.log('Wish list created:', data);
       }
     });
 
-    async function loadPublicList(slug) {
-      $('createPanel').classList.add('hidden');
-      $('publicPanel').classList.remove('hidden');
+    
+async function loadPublicList(slug) {
+  $('createPanel').classList.add('hidden');
+  $('ownerPanel').classList.add('hidden');
+  $('publicPanel').classList.remove('hidden');
 
-      try {
-        const { data, error } = await santaPantsDB.rpc(
-          'get_public_wish_list',
-          { p_slug: slug }
-        );
+  const container = $('giftList');
+  container.textContent = 'Loading Christmas wishes... 🎄';
 
-        if (error) throw error;
-        if (!data) throw new Error('Wish list not found.');
+  try {
+    const { data, error } = await santaPantsDB.rpc(
+      'get_public_wish_list',
+      { p_slug: slug }
+    );
 
-        $('publicHeading').textContent =
-          data.owner_name + "'s Christmas wish list 🎁";
+    if (error) throw error;
 
-        const container = $('giftList');
-        container.replaceChildren();
-
-        if (!data.gifts || data.gifts.length === 0) {
-          container.textContent = 'No presents added just yet!';
-          return;
-        }
-
-        data.gifts.forEach(gift => {
-          const card = document.createElement('div');
-          card.className = 'gift';
-
-          const title = document.createElement('h3');
-          title.textContent = gift.gift_name;
-          card.appendChild(title);
-
-          if (gift.description) {
-            const description = document.createElement('p');
-            description.textContent = gift.description;
-            card.appendChild(description);
-          }
-
-          if (gift.price !== null) {
-            const price = document.createElement('p');
-            price.textContent = '£' + Number(gift.price).toFixed(2);
-            card.appendChild(price);
-          }
-
-          if (gift.shopping_url) {
-            const link = document.createElement('a');
-            link.href = gift.shopping_url;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.textContent = 'View gift ↗';
-            card.appendChild(link);
-          }
-
-          const status = document.createElement('p');
-          status.textContent =
-            gift.status === 'available' ? '🎁 Available' :
-            gift.status === 'reserved' ? '🤫 Reserved' :
-            '✅ Purchased';
-
-          card.appendChild(status);
-          container.appendChild(card);
-        });
-
-      } catch (error) {
-        showMessage('Could not load wish list: ' + error.message, true);
-      }
+    if (!data) {
+      throw new Error('This wish list could not be found.');
     }
+
+    $('publicHeading').textContent =
+      data.owner_name + "'s Christmas wish list 🎁";
+
+    container.replaceChildren();
+
+    if (!data.gifts || data.gifts.length === 0) {
+      container.textContent = 'No presents added just yet!';
+      return;
+    }
+
+    data.gifts.forEach(gift => {
+      const card = document.createElement('div');
+      card.className = 'gift';
+
+      const title = document.createElement('h3');
+      title.textContent = gift.gift_name;
+      card.appendChild(title);
+
+      if (gift.description) {
+        const description = document.createElement('p');
+        description.textContent = gift.description;
+        card.appendChild(description);
+      }
+
+      if (gift.price !== null && gift.price !== undefined) {
+        const price = document.createElement('p');
+        price.textContent = '£' + Number(gift.price).toFixed(2);
+        card.appendChild(price);
+      }
+
+      if (gift.shopping_url) {
+        const link = document.createElement('a');
+        link.href = gift.shopping_url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'View gift ↗';
+        card.appendChild(link);
+      }
+
+      const status = document.createElement('p');
+      status.textContent =
+        gift.status === 'available' ? '🎁 Available' :
+        gift.status === 'reserved' ? '🤫 Reserved' :
+        '🎉 Purchased';
+
+      card.appendChild(status);
+      container.appendChild(card);
+    });
+
+  } catch (error) {
+    container.textContent =
+      'Unable to load this wish list: ' + error.message;
+  }
+}
 
     async function startApp() {
       if (!window.supabase || typeof santaPantsDB === 'undefined') {
