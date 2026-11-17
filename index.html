@@ -19,8 +19,7 @@
       background: #c92f45;
       color: white;
       text-align: center;
-      padding: 18px;
-      font-size: 17px;
+      padding: 16px;
       font-weight: bold;
     }
 
@@ -28,79 +27,104 @@
       background: #176b49;
       color: white;
       text-align: center;
-      padding: 65px 20px;
-      border-radius: 0 0 40px 40px;
+      padding: 45px 20px;
+      border-radius: 0 0 35px 35px;
     }
 
-    .hero .emoji { font-size: 65px; }
+    .hero .emoji { font-size: 55px; }
 
     h1 {
-      font-size: clamp(42px, 8vw, 70px);
-      margin: 12px 0;
+      font-size: clamp(42px, 8vw, 68px);
+      margin: 10px 0;
       color: #ffe17b;
     }
 
     .hero p {
-      font-size: 18px;
-      line-height: 1.6;
       max-width: 480px;
-      margin: 15px auto 25px;
-    }
-
-    .button {
-      display: inline-block;
-      background: #ffcf55;
-      color: #56351f;
-      padding: 15px 25px;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
+      margin: 12px auto 22px;
+      line-height: 1.6;
     }
 
     main {
-      max-width: 750px;
-      margin: 40px auto;
-      padding: 20px;
-      text-align: center;
+      max-width: 650px;
+      margin: 30px auto;
+      padding: 15px;
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 16px;
-      margin: 30px 0;
-    }
-
-    .feature {
+    .panel {
       background: white;
-      padding: 24px 15px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px #0000000b;
-    }
-
-    .feature span { font-size: 35px; }
-
-    .feature h3 { color: #c92f45; }
-
-    .search {
-      background: #ffe9e2;
-      padding: 25px;
       border-radius: 22px;
-      margin-top: 35px;
+      padding: 25px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 20px #0000000b;
     }
 
-    input {
-      width: 100%;
-      max-width: 350px;
-      padding: 14px;
-      border: 2px solid #ead6c9;
-      border-radius: 12px;
-      font-size: 16px;
-      margin: 12px 0;
+    h2 { color: #c92f45; }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-weight: bold;
     }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 2px solid #ead6c9;
+      border-radius: 11px;
+      font: inherit;
+      background: #fffdfa;
+    }
+
+    textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    button, .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 30px;
+      background: #ffcf55;
+      color: #56351f;
+      padding: 14px 22px;
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .green { background: #176b49; color: white; }
+
+    .gift {
+      border: 2px solid #f4e7da;
+      border-radius: 15px;
+      padding: 16px;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .gift a { color: #176b49; }
+
+    .message {
+      padding: 12px;
+      border-radius: 10px;
+      background: #e8f5e9;
+      margin-top: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .error { background: #ffebee; color: #a51e32; }
+
+    .small { color: #777; font-size: 13px; }
+
+    .hidden { display: none; }
 
     footer {
       text-align: center;
@@ -109,62 +133,333 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>🎄 THE MOST WONDERFUL WISH LIST WEBSITE 🎄</header>
 
   <section class="hero">
     <div class="emoji">🎅🎁</div>
     <h1>Santa Pants!</h1>
     <p>
-      Dear Santa... I've been very good this year!
-      Create your Christmas wish list, share it
-      with everyone and make some Christmas magic.
+      Dear Santa, I've been very good this year!
+      Create your Christmas wish list and share
+      a little festive magic.
     </p>
-    <button class="button" onclick="alert('Your wish list creator is coming soon! 🎁')">
-      🎁 Create my wish list
-    </button>
   </section>
 
   <main>
-    <h2>Christmas wishes made easy! ✨</h2>
-    <p>No more guessing what everyone wants.
-       Let's make Christmas shopping magical!</p>
+    <section id="createPanel" class="panel">
+      <h2>🎁 Create your wish list</h2>
+      <p>Tell Santa who's making the wishes!</p>
 
-    <div class="features">
-      <div class="feature">
-        <span>📝</span>
-        <h3>Make a list</h3>
-        <p>Add all your Christmas wishes in one place.</p>
-      </div>
-      <div class="feature">
-        <span>🔗</span>
-        <h3>Share the love</h3>
-        <p>Send your wish list to friends and family.</p>
-      </div>
-      <div class="feature">
-        <span>🤫</span>
-        <h3>Keep it secret</h3>
-        <p>Reserve gifts without spoiling the surprise.</p>
-      </div>
-    </div>
+      <form id="createForm">
+        <label for="ownerName">Your name</label>
+        <input id="ownerName" maxlength="60"
+          placeholder="e.g. Sarah" required>
 
-    <div class="search">
-      <h2>Looking for someone's list? 🔍</h2>
-      <p>Once lists are live, you can find them here.</p>
-      <input type="text" placeholder="Enter a wish list link or name">
-      <br>
-      <button class="button" onclick="alert('Wish list search is coming soon! 🎄')">
-        Find a wish list
-      </button>
-    </div>
+        <button id="createButton" type="submit">
+          🎅 Create my wish list
+        </button>
+      </form>
+    </section>
+
+    <section id="ownerPanel" class="panel hidden">
+      <h2 id="ownerHeading">Your Christmas wishes 🎄</h2>
+      <p>Add all the presents you'd love this Christmas.</p>
+
+      <form id="giftForm">
+        <label for="giftName">What would you like?</label>
+        <input id="giftName" maxlength="150"
+          placeholder="e.g. Cosy winter scarf" required>
+
+        <label for="giftDescription">Description (optional)</label>
+        <textarea id="giftDescription"
+          placeholder="Colour, size or other details"></textarea>
+
+        <label for="giftPrice">Price in £ (optional)</label>
+        <input id="giftPrice" type="number"
+          min="0" max="999999" step="0.01"
+          placeholder="25.00">
+
+        <label for="giftUrl">Shopping link (optional)</label>
+        <input id="giftUrl" type="url"
+          placeholder="https://www.example.com/product">
+
+        <button id="giftButton" type="submit">
+          ➕ Add this present
+        </button>
+      </form>
+
+      <div id="sharePanel" class="message hidden">
+        <strong>🎉 Your wish list is ready to share!</strong>
+        <p id="shareLink"></p>
+        <button id="copyButton" type="button">Copy my link 🔗</button>
+      </div>
+
+      <p class="small">
+        Your owner access is saved in this browser.
+        Keep this device's browser data safe.
+      </p>
+    </section>
+
+    <section id="publicPanel" class="panel hidden">
+      <h2 id="publicHeading">Christmas wish list 🎁</h2>
+      <div id="giftList"></div>
+    </section>
+
+    <div id="statusMessage" aria-live="polite"></div>
   </main>
 
   <footer>
-    Made with ❤️ and a little Christmas magic 🎄<br>
-    © 2026 Santa Pants
+    Made with ❤️ and a little Christmas magic 🎄
+    <br>© 2026 Santa Pants
   </footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    let currentSlug = null;
+    let ownerToken = null;
+
+    function showMessage(message, isError = false) {
+      const box = $('statusMessage');
+      box.textContent = message;
+      box.className = 'message' + (isError ? ' error' : '');
+    }
+
+    function makeToken() {
+      const bytes = new Uint8Array(32);
+      crypto.getRandomValues(bytes);
+      return Array.from(bytes)
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    function getListUrl(slug) {
+      const url = new URL(window.location.href);
+      url.search = '';
+      url.searchParams.set('list', slug);
+      return url.toString();
+    }
+
+    function showOwner(slug, token, name) {
+      currentSlug = slug;
+      ownerToken = token;
+
+      $('createPanel').classList.add('hidden');
+      $('publicPanel').classList.add('hidden');
+      $('ownerPanel').classList.remove('hidden');
+      $('ownerHeading').textContent = name + "'s Christmas wishes 🎄";
+
+      const link = getListUrl(slug);
+      $('shareLink').textContent = link;
+      $('sharePanel').classList.remove('hidden');
+    }
+
+    $('createForm').addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const name = $('ownerName').value.trim();
+      if (name.length < 2) {
+        showMessage('Please enter at least two characters.', true);
+        return;
+      }
+
+      $('createButton').disabled = true;
+      showMessage('Santa is preparing your wish list... 🎅');
+
+      try {
+        const token = makeToken();
+
+        const { data, error } = await santaPantsDB.rpc(
+          'create_wish_list',
+          {
+            p_owner_name: name,
+            p_owner_token: token
+          }
+        );
+
+        if (error) throw error;
+
+        const slug = data.slug;
+
+        localStorage.setItem(
+          'santa-owner-' + slug, token
+        );
+        localStorage.setItem(
+          'santa-name-' + slug, name
+        );
+
+        history.replaceState(null, '', getListUrl(slug));
+        showOwner(slug, token, name);
+        showMessage('Your Christmas wish list has been created! 🎁');
+
+      } catch (error) {
+        showMessage('Could not create your list: ' + error.message, true);
+      } finally {
+        $('createButton').disabled = false;
+      }
+    });
+
+    $('giftForm').addEventListener('submit', async event => {
+      event.preventDefault();
+
+      if (!currentSlug || !ownerToken) return;
+
+      const name = $('giftName').value.trim();
+      const description = $('giftDescription').value.trim();
+      const priceText = $('giftPrice').value.trim();
+      const price = priceText === '' ? null : Number(priceText);
+      const urlText = $('giftUrl').value.trim();
+
+      if (price !== null && (!Number.isFinite(price) || price < 0)) {
+        showMessage('Please enter a valid price.', true);
+        return;
+      }
+
+      if (urlText) {
+        try {
+          const parsed = new URL(urlText);
+          if (!['http:', 'https:'].includes(parsed.protocol)) {
+            throw new Error('Invalid URL');
+          }
+        } catch {
+          showMessage('Please enter a valid shopping link.', true);
+          return;
+        }
+      }
+
+      $('giftButton').disabled = true;
+
+      try {
+        const { error } = await santaPantsDB.rpc('add_gift', {
+          p_slug: currentSlug,
+          p_owner_token: ownerToken,
+          p_gift_name: name,
+          p_description: description,
+          p_price: price,
+          p_shopping_url: urlText || null
+        });
+
+        if (error) throw error;
+
+        $('giftForm').reset();
+        showMessage('Present added to your wish list! 🎁');
+
+      } catch (error) {
+        showMessage('Could not add present: ' + error.message, true);
+      } finally {
+        $('giftButton').disabled = false;
+      }
+    });
+
+    $('copyButton').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(
+          getListUrl(currentSlug)
+        );
+        showMessage('Your sharing link has been copied! 🎄');
+      } catch {
+        showMessage('Please copy the link shown above manually.', true);
+      }
+    });
+
+    async function loadPublicList(slug) {
+      $('createPanel').classList.add('hidden');
+      $('publicPanel').classList.remove('hidden');
+
+      try {
+        const { data, error } = await santaPantsDB.rpc(
+          'get_public_wish_list',
+          { p_slug: slug }
+        );
+
+        if (error) throw error;
+        if (!data) throw new Error('Wish list not found.');
+
+        $('publicHeading').textContent =
+          data.owner_name + "'s Christmas wish list 🎁";
+
+        const container = $('giftList');
+        container.replaceChildren();
+
+        if (!data.gifts || data.gifts.length === 0) {
+          container.textContent = 'No presents added just yet!';
+          return;
+        }
+
+        data.gifts.forEach(gift => {
+          const card = document.createElement('div');
+          card.className = 'gift';
+
+          const title = document.createElement('h3');
+          title.textContent = gift.gift_name;
+          card.appendChild(title);
+
+          if (gift.description) {
+            const description = document.createElement('p');
+            description.textContent = gift.description;
+            card.appendChild(description);
+          }
+
+          if (gift.price !== null) {
+            const price = document.createElement('p');
+            price.textContent = '£' + Number(gift.price).toFixed(2);
+            card.appendChild(price);
+          }
+
+          if (gift.shopping_url) {
+            const link = document.createElement('a');
+            link.href = gift.shopping_url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = 'View gift ↗';
+            card.appendChild(link);
+          }
+
+          const status = document.createElement('p');
+          status.textContent =
+            gift.status === 'available' ? '🎁 Available' :
+            gift.status === 'reserved' ? '🤫 Reserved' :
+            '✅ Purchased';
+
+          card.appendChild(status);
+          container.appendChild(card);
+        });
+
+      } catch (error) {
+        showMessage('Could not load wish list: ' + error.message, true);
+      }
+    }
+
+    async function startApp() {
+      if (!window.supabase || typeof santaPantsDB === 'undefined') {
+        showMessage(
+          'Supabase connection missing. Please check config.js and your script tags.',
+          true
+        );
+        return;
+      }
+
+      const params = new URLSearchParams(location.search);
+      const slug = params.get('list');
+
+      if (!slug) return;
+
+      const savedToken = localStorage.getItem('santa-owner-' + slug);
+      const savedName = localStorage.getItem('santa-name-' + slug);
+
+      if (savedToken && savedName) {
+        showOwner(slug, savedToken, savedName);
+      } else {
+        await loadPublicList(slug);
+      }
+    }
+
+    startApp();
+  </script>
 </body>
 </html>
