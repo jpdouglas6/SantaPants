@@ -460,6 +460,19 @@
     }
 
     startApp();
+    setTimeout(() => {
+  const box = document.createElement('div');
+  box.style.cssText =
+    'background:#fff0cc;padding:15px;margin:15px;border-radius:12px;color:#333';
+
+  box.textContent =
+    'Supabase library: ' +
+    (window.supabase ? 'LOADED' : 'NOT LOADED') +
+    ' | Database connection: ' +
+    (typeof santaPantsDB !== 'undefined' ? 'CONFIGURED' : 'NOT CONFIGURED');
+
+  document.body.appendChild(box);
+}, 1000);
   </script>
 </body>
 </html>
